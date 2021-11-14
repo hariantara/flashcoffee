@@ -19,7 +19,7 @@ Please click this link below to see the instruction detail:
 1. Clone the repo to your directory
 2. Go to project directory
 3. Install the dependencies ```npm i ```
-4. Set dependencies for iOS ``` cd ios && npx pod install && cd .. ``
+4. Set dependencies for iOS ``` cd ios && npx pod install && cd .. ```
 5. Run **Android** ```npm run react-native android``` or **iOS** ```npm run react-native ios```
 
 
