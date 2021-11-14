@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* flashcoffeeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* flashcoffeeTests.m */; };
+		0391D56A1F7041478B62E347 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF70884528A64996A227C6EE /* Montserrat-Bold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		338F8F440FED1721CFCD28A7 /* libPods-flashcoffee.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B83823E2BCF7F3055C50D /* libPods-flashcoffee.a */; };
+		3772D32358B94542AD24547C /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69C04F0DC2144A138561D076 /* Montserrat-Regular.ttf */; };
+		3AEE4791753D4D1FB17BED9D /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05F7D8E318F448C5AE3DA29B /* Montserrat-SemiBold.ttf */; };
 		426CE69E3958776604AEB7C6 /* libPods-flashcoffee-flashcoffeeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20309FE2EFC14FC2B649D955 /* libPods-flashcoffee-flashcoffeeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		D83FB049824E4C818CF45869 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A52779BCD93F4EA3A50CEDB3 /* Montserrat-Black.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,20 +34,40 @@
 		00E356EE1AD99517003FC87E /* flashcoffeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = flashcoffeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* flashcoffeeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = flashcoffeeTests.m; sourceTree = "<group>"; };
+		05F7D8E318F448C5AE3DA29B /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		0D19F2FB7A2F3B03B8FC8018 /* Pods-flashcoffee-flashcoffeeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcoffee-flashcoffeeTests.release.xcconfig"; path = "Target Support Files/Pods-flashcoffee-flashcoffeeTests/Pods-flashcoffee-flashcoffeeTests.release.xcconfig"; sourceTree = "<group>"; };
+		0E0088B5FA464D92BB3C8A40 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* flashcoffee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flashcoffee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = flashcoffee/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = flashcoffee/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = flashcoffee/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = flashcoffee/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = flashcoffee/main.m; sourceTree = "<group>"; };
+		185431934D54486FA1720120 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		19A48C5B93763AD8A63EC3C1 /* Pods-flashcoffee-flashcoffeeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcoffee-flashcoffeeTests.debug.xcconfig"; path = "Target Support Files/Pods-flashcoffee-flashcoffeeTests/Pods-flashcoffee-flashcoffeeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		20309FE2EFC14FC2B649D955 /* libPods-flashcoffee-flashcoffeeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-flashcoffee-flashcoffeeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9B83823E2BCF7F3055C50D /* libPods-flashcoffee.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-flashcoffee.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		461DF768556A47908921812C /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		469ECAFCE11176C1F888F3E7 /* Pods-flashcoffee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcoffee.release.xcconfig"; path = "Target Support Files/Pods-flashcoffee/Pods-flashcoffee.release.xcconfig"; sourceTree = "<group>"; };
+		51A1AAA1D6B84FC88F8CCF7E /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		56B209B4A66948B482DF4A10 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		5F11CFE7A5AF41999B0D274B /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		60E620349E7B72F07BB62F67 /* Pods-flashcoffee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcoffee.debug.xcconfig"; path = "Target Support Files/Pods-flashcoffee/Pods-flashcoffee.debug.xcconfig"; sourceTree = "<group>"; };
+		69C04F0DC2144A138561D076 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = flashcoffee/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		949D6A015BE74C69BD2FE8BA /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		A52779BCD93F4EA3A50CEDB3 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		A94A3ACECACB48E780AE558C /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		B20812718E7645608CB71F38 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		C1D4AD3DDCA44E1E8B6FE904 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		C93EFBD437934240A1EAFE20 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		E8886C06337B40F8804AC790 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EF3A43597FBB4E73AAA86A9A /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		F39FC0A94F524F9D9675D246 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		F40C668A7B624318890AAB9B /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		FA91A18127434750AA8958D3 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		FF70884528A64996A227C6EE /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +146,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D6293DDD81C83FA8AFD755E7 /* Pods */,
+				8BDD0B71204947309578E9F9 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -137,6 +162,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8BDD0B71204947309578E9F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A52779BCD93F4EA3A50CEDB3 /* Montserrat-Black.ttf */,
+				FF70884528A64996A227C6EE /* Montserrat-Bold.ttf */,
+				69C04F0DC2144A138561D076 /* Montserrat-Regular.ttf */,
+				05F7D8E318F448C5AE3DA29B /* Montserrat-SemiBold.ttf */,
+				F39FC0A94F524F9D9675D246 /* AntDesign.ttf */,
+				FA91A18127434750AA8958D3 /* Entypo.ttf */,
+				51A1AAA1D6B84FC88F8CCF7E /* EvilIcons.ttf */,
+				E8886C06337B40F8804AC790 /* Feather.ttf */,
+				5F11CFE7A5AF41999B0D274B /* FontAwesome.ttf */,
+				EF3A43597FBB4E73AAA86A9A /* FontAwesome5_Brands.ttf */,
+				C93EFBD437934240A1EAFE20 /* FontAwesome5_Regular.ttf */,
+				461DF768556A47908921812C /* FontAwesome5_Solid.ttf */,
+				949D6A015BE74C69BD2FE8BA /* Fontisto.ttf */,
+				0E0088B5FA464D92BB3C8A40 /* Foundation.ttf */,
+				F40C668A7B624318890AAB9B /* Ionicons.ttf */,
+				185431934D54486FA1720120 /* MaterialCommunityIcons.ttf */,
+				A94A3ACECACB48E780AE558C /* MaterialIcons.ttf */,
+				56B209B4A66948B482DF4A10 /* Octicons.ttf */,
+				C1D4AD3DDCA44E1E8B6FE904 /* SimpleLineIcons.ttf */,
+				B20812718E7645608CB71F38 /* Zocial.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		D6293DDD81C83FA8AFD755E7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +197,6 @@
 				19A48C5B93763AD8A63EC3C1 /* Pods-flashcoffee-flashcoffeeTests.debug.xcconfig */,
 				0D19F2FB7A2F3B03B8FC8018 /* Pods-flashcoffee-flashcoffeeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -245,6 +296,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D83FB049824E4C818CF45869 /* Montserrat-Black.ttf in Resources */,
+				0391D56A1F7041478B62E347 /* Montserrat-Bold.ttf in Resources */,
+				3772D32358B94542AD24547C /* Montserrat-Regular.ttf in Resources */,
+				3AEE4791753D4D1FB17BED9D /* Montserrat-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
