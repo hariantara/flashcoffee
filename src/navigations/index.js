@@ -7,8 +7,8 @@ const Stack = createNativeStackNavigator();
 
 // Screens
 import HomeScreen from '../screens/Home/index';
-import UpcomingScreen from '../screens/Schedules/Upcoming';
-import DetailScreen from '../screens/Schedules/Detail';
+import UpcomingScreen from '../screens/Schedules/upcoming';
+import DetailScreen from '../screens/Schedules/detail';
 
 function MainNavigator() {
   return (
