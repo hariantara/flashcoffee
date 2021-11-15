@@ -13,6 +13,7 @@ import Colors from '../../utils/Colors';
 import Fonts from '../../utils/Fonts';
 import Feather from 'react-native-vector-icons/Feather';
 import Metarial from 'react-native-vector-icons/MaterialCommunityIcons';
+import moment from 'moment';
 
 const {width} = Dimensions?.get('screen');
 
@@ -20,7 +21,17 @@ export default function Upcoming(props) {
   console.log('Upcoming Props: ', props);
   return (
     <View style={{flex: 1}}>
-      <Header title={props?.route?.params?.data?.date} />
+      <Header
+        title={
+          props?.route?.params?.data?.date
+            ? props?.route?.params?.data?.date
+            : moment(props?.route?.params?.data?.date).format(
+                'DD MMMM YYYY',
+              ) === 'Invalid date'
+            ? 'DETAIL'
+            : props?.route?.params?.data?.date
+        }
+      />
       <View style={{flex: 1, backgroundColor: Colors?.white, paddingTop: 10}}>
         <ScrollView contentContainerStyle={{padding: 15}}>
           <StoreDetail data={props?.route?.params?.data} />

@@ -54,10 +54,23 @@ export default function HeaderWithNavigationIcon(props) {
                 color: Colors?.black,
                 letterSpacing: 0.3,
               }}>
-              {moment(props?.title).format('DD MMMM YYYY')}
+              {props?.title
+                ? moment(props?.title).format('DD MMMM YYYY') === 'Invalid date'
+                  ? props?.title
+                  : moment(props?.title).format('DD MMMM YYYY')
+                : props?.title}
             </Text>
           </View>
-          <View style={{flex: 0.1}} />
+          <View style={{flex: 0.1}}>
+            {props?.title === 'UPCOMING SCHEDULE' ? (
+              <Feather
+                onPress={() => {}}
+                name="refresh-cw"
+                color={Colors?.black}
+                size={RFPercentage(2.7)}
+              />
+            ) : null}
+          </View>
         </View>
       </SafeAreaView>
     </View>

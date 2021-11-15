@@ -22,11 +22,22 @@ import TimeSchedule from './TimeSchedule';
 
 export default function NextSchedule(props) {
   console.log('NextSchedule Props: ', props);
-  const {isLoading, isError, data} = props;
+
+  const navigateToListSchedule = () => {
+    try {
+      navigationRef?.current?.navigate('Upcoming');
+    } catch (error) {
+      // error message goes here
+    }
+  };
 
   return (
     <View style={{width: '100%', marginTop: 18}}>
-      <HeaderCard title="NEXT SCHEDULE" subtitle="See All" onPress={() => {}} />
+      <HeaderCard
+        title="NEXT SCHEDULE"
+        subtitle="See All"
+        onPress={() => navigateToListSchedule()}
+      />
       <ListNextSchedule {...props} />
     </View>
   );

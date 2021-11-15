@@ -195,7 +195,9 @@ export default function Home(props) {
           <TodaySchedule
             onNavigate={() => {
               try {
-                props?.navigation?.navigate('Detail', {data: todaySchedules[0]});
+                props?.navigation?.navigate('Detail', {
+                  data: todaySchedules[0],
+                });
               } catch (error) {
                 // error
               }
