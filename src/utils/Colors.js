@@ -6,6 +6,7 @@ const colors = {
   red: '#CA3852',
   lightgray: '#F4F4F4',
   gray: '#B1B1B1',
+  dim: 'rgba(0,0,0,0.5)',
 };
 
 export default colors;
