@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {View, ScrollView, RefreshControl} from 'react-native';
+import {
+  View,
+  Modal,
+  ScrollView,
+  RefreshControl,
+  ActivityIndicator,
+  Text,
+} from 'react-native';
 import Colors from '../../utils/Colors';
 
 // components
@@ -11,6 +18,10 @@ import StickyButton from '../../components/Button/ButtonClockInOut';
 // Dummy API
 import API_GET_NEXTSCHEDULE from '../../apis/getNextSchedule';
 import API_GET_TODAYSCHEDULE from '../../apis/getTodaySchedule';
+
+// update data dummy purpose
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import moment from 'moment';
 
 export default function Home(props) {
   const [nextSchedules, setNextSchedules] = useState([]);
@@ -26,6 +37,10 @@ export default function Home(props) {
 
   const [universalRefresh, setUniversalRefresh] = useState(false);
 
+  const [showModalLoader, setShowModalLoader] = useState(false);
+
+  const [clockStatus, setClockStatus] = useState('clockIn');
+
   useEffect(() => {
     fetchTodayScheduleAPI();
     fetchNextScheduleAPI();
@@ -37,7 +52,61 @@ export default function Home(props) {
     if (universalRefresh) {
       onUnviersalRefresh();
     }
-  }, [refreshingToday, universalRefresh]);
+
+    if (showModalLoader) {
+      onClockInOut();
+    }
+  }, [refreshingToday, universalRefresh, showModalLoader]);
+
+  const onClockInOut = useCallback(() => {
+    try {
+      AsyncStorage.getItem('@today')
+        .then(res => {
+          if (res) {
+            const dataToday = JSON.parse(res);
+
+            if (clockStatus === 'clockOut') {
+              // Run Clock Out
+              let oldData = dataToday;
+              let newData = {
+                ...oldData,
+                clockOutTime: moment().format('hh:mm'),
+              };
+
+              AsyncStorage.setItem('@today', JSON.stringify(newData))
+                .then(() => {
+                  setRefreshingToday(true);
+                })
+                .catch(error => {
+                  throw new Error(error);
+                });
+            } else {
+              // RUn Clock In
+              let oldData = dataToday;
+              let newData = {
+                ...oldData,
+                clockInTime: moment().format('hh:mm'),
+              };
+
+              AsyncStorage.setItem('@today', JSON.stringify(newData))
+                .then(() => {
+                  setRefreshingToday(true);
+                })
+                .catch(error => {
+                  throw new Error(error);
+                });
+            }
+          } else {
+            // do nothing
+          }
+        })
+        .catch(error => {
+          throw new Error(error);
+        });
+    } catch (error) {
+      setShowModalLoader(false);
+    }
+  }, [showModalLoader]);
 
   const onUnviersalRefresh = useCallback(() => {
     setIsLoadingTodaySchedule(true);
@@ -62,6 +131,7 @@ export default function Home(props) {
             setIsLoadingTodaySchedule(false);
             setRefreshingToday(false);
             setUniversalRefresh(false);
+            setShowModalLoader(false);
           } else {
             throw new Error('Server Error');
           }
@@ -72,10 +142,11 @@ export default function Home(props) {
         });
     } catch (error) {
       console.log('Error fetchTodayScheduleAPI: ', error);
-      setIsErrorTodayScehdule(false);
+      setIsErrorTodayScehdule(true);
       setIsLoadingTodaySchedule(false);
       setRefreshingToday(false);
       setUniversalRefresh(false);
+      setShowModalLoader(false);
     }
   };
 
@@ -109,6 +180,7 @@ export default function Home(props) {
   return (
     <View style={styles.container}>
       <Header />
+      <ModalLoader visible={showModalLoader} />
       <View style={{flex: 1}}>
         <ScrollView
           refreshControl={
@@ -135,11 +207,55 @@ export default function Home(props) {
             data={nextSchedules}
           />
         </ScrollView>
-        <StickyButton />
+        <StickyButton
+          prevData={todaySchedules[0]}
+          onPressClockIn={() => {
+            console.log('Clock In Button Pressed');
+            setClockStatus('clockIn');
+            setShowModalLoader(true);
+          }}
+          onPressClockOut={() => {
+            console.log('Clock Out Button Pressed');
+            setClockStatus('clockOut');
+            setShowModalLoader(true);
+          }}
+        />
       </View>
     </View>
   );
 }
+
+export const ModalLoader = props => {
+  const {visible} = props;
+
+  return (
+    <Modal visible={visible} transparent animationType="fade">
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: Colors?.dim,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <View
+          style={{
+            backgroundColor: Colors?.white,
+            padding: 25,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 15,
+          }}>
+          <Text>Loading...</Text>
+          <ActivityIndicator
+            size="large"
+            color={Colors?.gray}
+            style={{marginTop: 10}}
+          />
+        </View>
+      </View>
+    </Modal>
+  );
+};
 
 const styles = {
   container: {
