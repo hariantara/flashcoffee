@@ -48,6 +48,12 @@ const createDummyData = listDayInWeek => {
                       endTime: moment(d)
                         .add(i % 2 === 0 ? 3 : 5, 'hours')
                         .format('hh:mm'),
+                      isClockIn: false,
+                      isClockOut: false,
+                      clockInTime: null,
+                      clockOutTime: null,
+                      address:
+                        'Jl. Sultan Iskandar Muda, RT.10/RW.6, Kby. Lama Utara, Kec. Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12240',
                     }
                   : null,
             };

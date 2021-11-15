@@ -2,6 +2,7 @@ import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {navigationRef} from './NavigationServices';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +13,7 @@ import DetailScreen from '../screens/Schedules/detail';
 
 function MainNavigator() {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName={'Home'}>
         <Stack.Screen
           name={'Home'}

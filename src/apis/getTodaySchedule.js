@@ -32,6 +32,8 @@ export const saveIntoAsyncStorage = () => {
             AsyncStorage.setItem(
               '@today',
               JSON.stringify({
+                id: 1,
+                date: moment().format('YYYY MM DD'),
                 title: 'Mediterania Garden Residence',
                 startTime: moment().format('hh:mm'),
                 endTime: moment().add(2, 'hours').format('hh:mm'),
@@ -39,6 +41,8 @@ export const saveIntoAsyncStorage = () => {
                 isClockOut: false,
                 clockInTime: null,
                 clockOutTime: null,
+                address:
+                  'Jl. Sultan Iskandar Muda, RT.10/RW.6, Kby. Lama Utara, Kec. Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12240',
               }),
             )
               .then(res => {
@@ -64,8 +68,8 @@ export const saveIntoAsyncStorage = () => {
           }
         })
         .catch(error => {
-          throw new Error(error)
-        })
+          throw new Error(error);
+        });
     } catch (error) {
       reject(error);
     }

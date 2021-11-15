@@ -21,7 +21,7 @@ import TimeSchedule from './TimeSchedule';
 const {width} = Dimensions?.get('screen');
 
 export default function TodaySchedule(props) {
-  const {isLoading, isError, data, onRefresh} = props;
+  const {isLoading, isError, data, onRefresh, onNavigate} = props;
 
   if (isLoading && !isError) {
     return (
@@ -78,7 +78,8 @@ export default function TodaySchedule(props) {
           onPress={() => onRefresh()}
           disabled={isError ? true : false}
         />
-        <View
+        <TouchableOpacity
+          onPress={() => onNavigate()}
           style={{
             backgroundColor: Colors?.lightgray,
             width: '100%',
@@ -98,7 +99,7 @@ export default function TodaySchedule(props) {
             clockInTime={data[0]?.clockInTime}
             clockOutTime={data[0]?.clockOutTime}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }

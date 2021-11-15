@@ -193,6 +193,13 @@ export default function Home(props) {
             padding: 15,
           }}>
           <TodaySchedule
+            onNavigate={() => {
+              try {
+                props?.navigation?.navigate('Detail', {data: todaySchedules[0]});
+              } catch (error) {
+                // error
+              }
+            }}
             isLoading={isLoadingTodaySchedule}
             isError={isErrorTodaySchedule}
             data={todaySchedules}

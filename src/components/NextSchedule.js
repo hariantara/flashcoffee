@@ -11,6 +11,7 @@ import Colors from '../utils/Colors';
 import Fonts from '../utils/Fonts';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import moment from 'moment';
+import {navigationRef} from '../navigations/NavigationServices';
 
 const {width} = Dimensions?.get('screen');
 
@@ -99,6 +100,9 @@ export const NextScheduleCard = props => {
   if (item) {
     return (
       <TouchableOpacity
+        onPress={() =>
+          navigationRef?.current?.navigate('Detail', {data: item?.detail})
+        }
         style={{
           backgroundColor: Colors?.lightgray,
           marginRight: 10,
