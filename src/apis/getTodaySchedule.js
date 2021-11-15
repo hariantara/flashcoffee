@@ -11,7 +11,7 @@ var data = {
   clockOutTime: null,
 };
 
-export const getTodayScheduleApi = () => {
+const getTodayScheduleApi = () => {
   return new Promise((resolve, reject) => {
     try {
       setTimeout(() => {
@@ -22,3 +22,5 @@ export const getTodayScheduleApi = () => {
     }
   });
 };
+
+export default getTodayScheduleApi;

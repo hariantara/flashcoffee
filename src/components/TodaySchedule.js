@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  Dimensions,
+} from 'react-native';
 import Colors from '../utils/Colors';
 import Fonts from '../utils/Fonts';
 import {RFPercentage} from 'react-native-responsive-fontsize';
@@ -7,30 +13,95 @@ import Feather from 'react-native-vector-icons/Feather';
 import moment from 'moment';
 import Dash from 'react-native-dash';
 
+// Components
+import HeaderCard from './Header/HeaderCard';
+import TitleSchedule from './TitleSchedule';
+import TimeSchedule from './TimeSchedule';
+
+const {width} = Dimensions?.get('screen');
+
 export default function TodaySchedule(props) {
-  return (
-    <View style={{width: '100%'}}>
-      <HeaderCard />
-      <View
-        style={{
-          backgroundColor: Colors?.lightgray,
-          width: '100%',
-          padding: 10,
-          borderRadius: 8,
-        }}>
-        <TitleSchedule text={'Mediterania Garden Residence'} />
-        <TimeSchedule
-          startTime={moment().format('hh:mm')}
-          endTime={moment().add(5, 'hours').format('hh:mm')}
+  const {isLoading, isError, data, onRefresh} = props;
+
+  if (isLoading && !isError) {
+    return (
+      <View style={{width: '100%'}}>
+        <HeaderCard
+          title="TODAY'S SCHEDULE"
+          subtitle="Refresh"
+          onPress={() => onRefresh()}
         />
-        <AttendanceButton
-          onPressClockIn={() => {}}
-          onPressClockOut={() => {}}
-        />
-        <AttendanceTime clockInTime={'05 : 00'} clockOutTime={'17 : 00'} />
+        <View
+          style={{
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <ActivityIndicator size="large" color={Colors?.gray} />
+        </View>
       </View>
-    </View>
-  );
+    );
+  } else if (!isLoading && isError) {
+    return (
+      <View style={{width: '100%'}}>
+        <HeaderCard
+          title="TODAY'S SCHEDULE"
+          subtitle="Refresh"
+          onPress={() => onRefresh()}
+        />
+        <View
+          style={{
+            width: '100%',
+            height: width * 0.3,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text
+            style={{
+              fontFamily: Fonts?.medium,
+              fontSize: RFPercentage(1.8),
+              color: Colors?.gray,
+              letterSpacing: 0.3,
+              textAlign: 'center',
+            }}>
+            No Schedule Today.
+          </Text>
+        </View>
+      </View>
+    );
+  } else {
+    return (
+      <View style={{width: '100%'}}>
+        <HeaderCard
+          title="TODAY'S SCHEDULE"
+          subtitle="Refresh"
+          onPress={() => onRefresh()}
+          disabled={isError ? true : false}
+        />
+        <View
+          style={{
+            backgroundColor: Colors?.lightgray,
+            width: '100%',
+            padding: 10,
+            borderRadius: 8,
+          }}>
+          <TitleSchedule text={data[0]?.title} />
+          <TimeSchedule
+            startTime={data[0]?.startTime}
+            endTime={data[0]?.endTime}
+          />
+          <AttendanceButton
+            onPressClockIn={() => {}}
+            onPressClockOut={() => {}}
+          />
+          <AttendanceTime
+            clockInTime={data[0]?.clockInTime}
+            clockOutTime={data[0]?.clockOutTime}
+          />
+        </View>
+      </View>
+    );
+  }
 }
 
 export const AttendanceTime = props => {
@@ -118,7 +189,7 @@ export const AttendanceButton = props => {
           alignItems: 'center',
         }}>
         <Button
-          disabled={false}
+          disabled={true}
           type="clockin"
           title="CLOCK IN"
           onPress={onPressClockIn}
@@ -133,7 +204,7 @@ export const AttendanceButton = props => {
           alignItems: 'center',
         }}>
         <Button
-          disabled={false}
+          disabled={true}
           type="clockout"
           title="CLOCK OUT"
           onPress={onPressClockOut}
@@ -153,11 +224,7 @@ export const Button = props => {
       style={{
         right: type === 'clockin' ? 5 : 0,
         borderRadius: 5,
-        backgroundColor: disabled
-          ? Colors?.gray
-          : type === 'clockin'
-          ? Colors?.green
-          : Colors?.red,
+        backgroundColor: type === 'clockin' ? Colors?.green : Colors?.red,
         padding: 8,
         paddingLeft: 13,
         paddingRight: 13,
@@ -175,98 +242,5 @@ export const Button = props => {
         {title}
       </Text>
     </TouchableOpacity>
-  );
-};
-
-export const TimeSchedule = props => {
-  const {startTime, endTime} = props;
-
-  return (
-    <View
-      style={{
-        width: '100%',
-        flexDirection: 'row',
-        marginVertical: 10,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-      }}>
-      <Feather
-        name="clock"
-        size={RFPercentage(2)}
-        color={Colors?.black}
-        style={{top: 1.2}}
-      />
-      <View style={{flex: 1, marginLeft: 10}}>
-        <Text
-          style={{
-            fontFamily: Fonts?.regular,
-            fontSize: RFPercentage(1.8),
-            color: Colors?.black,
-            letterSpacing: 1.2,
-          }}>
-          {startTime} - {endTime}
-        </Text>
-      </View>
-    </View>
-  );
-};
-
-export const TitleSchedule = props => {
-  const {text} = props;
-
-  return (
-    <View style={{width: '100%', flexDirection: 'row'}}>
-      <Text
-        numberOfLines={2}
-        style={{
-          fontFamily: Fonts?.medium,
-          color: Colors?.black,
-          fontSize: RFPercentage(1.8),
-          letterSpacing: 0.3,
-          lineHeight: 18,
-        }}>
-        {text}
-      </Text>
-    </View>
-  );
-};
-
-export const HeaderCard = props => {
-  return (
-    <View
-      style={{
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 8,
-      }}>
-      <Text
-        style={{
-          fontFamily: Fonts?.bold,
-          fontSize: RFPercentage(2),
-          color: Colors?.black,
-          letterSpacing: 0.3,
-        }}>
-        TODAY'S SCHEDULE
-      </Text>
-      <TouchableOpacity
-        style={{
-          left: 12,
-          padding: 10,
-          paddingLeft: 15,
-          paddingRight: 15,
-        }}>
-        <Text
-          style={{
-            fontFamily: Fonts?.medium,
-            fontSize: RFPercentage(1.7),
-            color: Colors?.red,
-            letterSpacing: 0.3,
-          }}>
-          Refresh
-        </Text>
-      </TouchableOpacity>
-    </View>
   );
 };
