@@ -64,7 +64,7 @@ export default function HeaderWithNavigationIcon(props) {
           <View style={{flex: 0.1}}>
             {props?.title === 'UPCOMING SCHEDULE' ? (
               <Feather
-                onPress={() => {}}
+                onPress={() => props?.onPressRightButton()}
                 name="refresh-cw"
                 color={Colors?.black}
                 size={RFPercentage(2.7)}

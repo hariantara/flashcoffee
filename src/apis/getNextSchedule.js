@@ -42,6 +42,7 @@ const createDummyData = listDayInWeek => {
               detail:
                 i % 2 === 0
                   ? {
+                      id: i + 1,
                       date: moment(d, 'ddd, YYYY MM DD').format(),
                       title: i % 2 !== 0 ? 'Mediterania' : 'Pluit Village',
                       startTime: moment(d).format('hh:mm'),

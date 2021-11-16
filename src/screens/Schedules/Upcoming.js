@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   View,
   Text,
@@ -6,11 +6,13 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 import Colors from '../../utils/Colors';
 import Fonts from '../../utils/Fonts';
 import Header from '../../components/Header/HeaderWithNavigationIcon';
-import Dash from 'react-native-dash';
+import TimeSchedule from '../../components/TimeSchedule';
+import {navigationRef} from '../../navigations/NavigationServices';
 
 // API
 import GET_UPCOMINGSCHEDULE from '../../apis/getNextSchedule';
@@ -25,13 +27,23 @@ export default function Upcoming(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
+  const [refreshing, setRefreshing] = useState(false);
+
   useEffect(() => {
     const subscription = fetchupComingSchedule();
+
+    if (refreshing) {
+      onRefresh();
+    }
 
     return () => {
       subscription;
     };
-  }, []);
+  }, [refreshing]);
+
+  const onRefresh = useCallback(() => {
+    fetchupComingSchedule();
+  }, [refreshing]);
 
   const fetchupComingSchedule = () => {
     try {
@@ -41,21 +53,27 @@ export default function Upcoming(props) {
           setList([...res]);
           setIsError(false);
           setIsLoading(false);
+          setRefreshing(false);
         })
         .catch(error => {
+          console.log('Error: ', error);
           throw new Error(error);
         });
     } catch (error) {
       console.log('Error fetchupComingSchedule: ', error);
       setIsError(true);
       setIsLoading(false);
+      setRefreshing(false);
     }
   };
 
   if (isLoading && !isError) {
     return (
       <View style={{flex: 1}}>
-        <Header title={'UPCOMING SCHEDULE'} />
+        <Header
+          title={'UPCOMING SCHEDULE'}
+          onPressRightButton={() => setRefreshing(true)}
+        />
         <View style={{flex: 1, alignItems: 'center', paddingTop: 15}}>
           <ActivityIndicator size="large" color={Colors?.gray} />
         </View>
@@ -64,7 +82,10 @@ export default function Upcoming(props) {
   } else if (!isLoading && isError) {
     return (
       <View style={{flex: 1}}>
-        <Header title={'UPCOMING SCHEDULE'} />
+        <Header
+          title={'UPCOMING SCHEDULE'}
+          onPressRightButton={() => setRefreshing(true)}
+        />
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Text
             style={{
@@ -82,12 +103,52 @@ export default function Upcoming(props) {
   } else {
     return (
       <View style={{flex: 1}}>
-        <Header title={'UPCOMING SCHEDULE'} />
+        <Header
+          title={'UPCOMING SCHEDULE'}
+          onPressRightButton={() => setRefreshing(true)}
+        />
         <View style={{flex: 1, backgroundColor: Colors?.white}}>
           <FlatList
+            ListHeaderComponent={() => {
+              return (
+                <View
+                  style={{
+                    padding: 15,
+                    backgroundColor: Colors?.white,
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 1,
+                    },
+                    shadowOpacity: 0.22,
+                    shadowRadius: 2.22,
+                    elevation: 3,
+                  }}>
+                  <Text
+                    style={{
+                      fontFamily: Fonts?.bold,
+                      fontSize: RFPercentage(2),
+                      color: Colors?.black,
+                      letterSpacing: 0.5,
+                    }}>
+                    {moment(list[0]?.date).format('MMMM YYYY')?.toUpperCase()}
+                  </Text>
+                </View>
+              );
+            }}
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={() => setRefreshing(true)}
+              />
+            }
             contentContainerStyle={{
-              paddingRight: 15,
-              paddingTop: 15,
+              // paddingRight: 15,
+              // paddingTop: 15,
               paddingBottom: 15,
             }}
             data={list}
@@ -121,7 +182,14 @@ export const ScheduleCard = props => {
   const {item} = props;
 
   return (
-    <View style={{width: '100%', flexDirection: 'row', marginBottom: 15}}>
+    <View
+      style={{
+        width: '100%',
+        flexDirection: 'row',
+        marginVertical: 15,
+        paddingRight: 15,
+        marginBottom: 10,
+      }}>
       <View
         style={{
           flex: 0.25,
@@ -150,16 +218,74 @@ export const ScheduleCard = props => {
         </Text>
       </View>
       <TouchableOpacity
+        onPress={() => {
+          try {
+            navigationRef?.current?.navigate('Detail', {data: item});
+          } catch (error) {
+            console.log('Error to navigate: ', error);
+          }
+        }}
         style={{
           flex: 1,
           borderRadius: 8,
           borderWidth: 0,
-          height: width * 0.25,
+          // height: width * 0.25,
           padding: 15,
           backgroundColor: Colors?.lightgray,
+          justifyContent: 'center',
+          alignItems: 'flex-start',
         }}>
-        <View style={{width: '100%', flexDirection: 'row'}}>
-          <Text>{item?.detail?.title}</Text>
+        <View style={{top: 2, width: '100%', flexDirection: 'row'}}>
+          <Text
+            numberOfLines={3}
+            style={{
+              fontFamily: Fonts?.medium,
+              fontSize: RFPercentage(2),
+              color: Colors?.black,
+              letterSpacing: 0.3,
+            }}>
+            {item?.detail?.title}
+          </Text>
+        </View>
+        <View
+          style={{
+            top: 5,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}>
+          <View>
+            <TimeSchedule
+              startTime={item?.detail?.startTime}
+              endTime={item?.detail?.endTime}
+            />
+          </View>
+          {moment(moment(item?.date).format('YYYY-MM-DD')).isSame(
+            moment().format('YYYY-MM-DD'),
+          ) ? (
+            <View
+              style={{
+                right: 25,
+                padding: 5,
+                paddingTop: 2,
+                paddingBottom: 2,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: Colors?.red,
+                borderRadius: 5,
+              }}>
+              <Text
+                style={{
+                  fontSize: RFPercentage(1.5),
+                  color: Colors?.white,
+                  fontFamily: Fonts?.medium,
+                  letterSpacing: 0.3,
+                }}>
+                TODAY
+              </Text>
+            </View>
+          ) : null}
         </View>
       </TouchableOpacity>
     </View>
@@ -170,7 +296,14 @@ export const NoScheduleCard = props => {
   const {item, index} = props;
 
   return (
-    <View style={{width: '100%', flexDirection: 'row', marginBottom: 15}}>
+    <View
+      style={{
+        width: '100%',
+        flexDirection: 'row',
+        marginVertical: 15,
+        paddingRight: 15,
+        marginBottom: 10,
+      }}>
       <View
         style={{
           flex: 0.25,
@@ -205,7 +338,7 @@ export const NoScheduleCard = props => {
           borderRadius: 8,
           borderColor: Colors?.gray,
           flex: 1,
-          height: width * 0.25,
+          height: width * 0.17,
         }}>
         <View
           style={{
