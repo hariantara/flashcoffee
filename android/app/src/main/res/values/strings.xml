@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">flashcoffee</string>
+    <string name="app_name">Ngopai</string>
+    <color name="white">#FFFFFF</color>
 </resources>

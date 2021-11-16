@@ -17,19 +17,18 @@ import moment from 'moment';
 
 const {width} = Dimensions?.get('screen');
 
-export default function Upcoming(props) {
-  console.log('Upcoming Props: ', props);
+export default function Detail(props) {
+  console.log('Detail Props: ', props);
   return (
     <View style={{flex: 1}}>
       <Header
         title={
           props?.route?.params?.data?.date
-            ? props?.route?.params?.data?.date
-            : moment(props?.route?.params?.data?.date).format(
+            ? moment(
+                new Date(props?.route?.params?.data?.date),
                 'DD MMMM YYYY',
-              ) === 'Invalid date'
-            ? 'DETAIL'
-            : props?.route?.params?.data?.date
+              ).format()
+            : 'DETAIL'
         }
       />
       <View style={{flex: 1, backgroundColor: Colors?.white, paddingTop: 10}}>
@@ -267,9 +266,15 @@ export const Label = props => {
 
 export const Thumbnail = () => {
   return (
-    <View style={{width: '90%', height: width * 0.17, borderRadius: 8}}>
+    <View
+      style={{
+        width: '90%',
+        height: width * 0.17,
+        borderRadius: 8,
+        backgroundColor: Colors?.gray,
+      }}>
       <Image
-        source={{url: `https://random.imagecdn.app/500/500`}}
+        source={{uri: `https://random.imagecdn.app/500/500`}}
         style={{
           borderRadius: 8,
           position: 'absolute',

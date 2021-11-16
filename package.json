@@ -7,7 +7,13 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "clean": "cd android && ./gradlew clean && cd ..",
+    "reset": "rm -rf node_modules; npm i --legacy-peer-deps; rm -rf $TMPDIR/react-*; rm -rf $TMPDIR/haste-*; rm -rf $TMPDIR/metro-*; watchman watch-del-all; react-native start --reset-cache",
+    "build:android": "cd android;export JAVA_HOME=`/usr/libexec/java_home -v 1.8`;./gradlew assembleRelease",
+    "build:ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
+    "android:bundle:dev": "react-native bundle --platform android --dev true --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle",
+    "android:bundle:prod": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.11",
@@ -21,6 +27,7 @@
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.9.0",
+    "react-native-splash-screen": "^3.2.0",
     "react-native-vector-icons": "^9.0.0"
   },
   "devDependencies": {

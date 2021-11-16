@@ -107,7 +107,7 @@ export default function Upcoming(props) {
           title={'UPCOMING SCHEDULE'}
           onPressRightButton={() => setRefreshing(true)}
         />
-        <View style={{flex: 1, backgroundColor: Colors?.white}}>
+        <View style={{flex: 1, backgroundColor: Colors?.white, zIndex: -99}}>
           <FlatList
             ListHeaderComponent={() => {
               return (
@@ -220,7 +220,7 @@ export const ScheduleCard = props => {
       <TouchableOpacity
         onPress={() => {
           try {
-            navigationRef?.current?.navigate('Detail', {data: item});
+            navigationRef?.current?.navigate('Detail', {data: item?.detail});
           } catch (error) {
             console.log('Error to navigate: ', error);
           }

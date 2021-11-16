@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, SafeAreaView, StatusBar} from 'react-native';
+import {View, Text, SafeAreaView, StatusBar, Platform} from 'react-native';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import Colors from '../../utils/Colors';
 import Fonts from '../../utils/Fonts';
@@ -12,8 +12,8 @@ export default function HeaderWithNavigationIcon(props) {
     <View style={{width: '100%', backgroundColor: Colors?.yellow}}>
       <StatusBar
         barStyle={'dark-content'}
-        translucent={true}
-        backgroundColor={'transparent'}
+        translucent={Platform?.OS === 'ios' ? true : false}
+        backgroundColor={Colors?.yellow}
       />
       <SafeAreaView>
         <View

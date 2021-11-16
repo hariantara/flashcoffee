@@ -33,7 +33,7 @@ export const saveIntoAsyncStorage = () => {
               '@today',
               JSON.stringify({
                 id: 1,
-                date: moment().format('YYYY MM DD'),
+                date: moment().format('ddd, YYYY MM DD'),
                 title: 'Mediterania Garden Residence',
                 startTime: moment().format('hh:mm'),
                 endTime: moment().add(2, 'hours').format('hh:mm'),
