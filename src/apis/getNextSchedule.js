@@ -42,12 +42,19 @@ const createDummyData = listDayInWeek => {
               detail:
                 i % 2 === 0
                   ? {
+                      id: i + 1,
                       date: moment(d, 'ddd, YYYY MM DD').format(),
                       title: i % 2 !== 0 ? 'Mediterania' : 'Pluit Village',
                       startTime: moment(d).format('hh:mm'),
                       endTime: moment(d)
                         .add(i % 2 === 0 ? 3 : 5, 'hours')
                         .format('hh:mm'),
+                      isClockIn: false,
+                      isClockOut: false,
+                      clockInTime: null,
+                      clockOutTime: null,
+                      address:
+                        'Jl. Sultan Iskandar Muda, RT.10/RW.6, Kby. Lama Utara, Kec. Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12240',
                     }
                   : null,
             };

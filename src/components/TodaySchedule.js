@@ -9,8 +9,6 @@ import {
 import Colors from '../utils/Colors';
 import Fonts from '../utils/Fonts';
 import {RFPercentage} from 'react-native-responsive-fontsize';
-import Feather from 'react-native-vector-icons/Feather';
-import moment from 'moment';
 import Dash from 'react-native-dash';
 
 // Components
@@ -21,7 +19,7 @@ import TimeSchedule from './TimeSchedule';
 const {width} = Dimensions?.get('screen');
 
 export default function TodaySchedule(props) {
-  const {isLoading, isError, data, onRefresh} = props;
+  const {isLoading, isError, data, onRefresh, onNavigate} = props;
 
   if (isLoading && !isError) {
     return (
@@ -78,7 +76,8 @@ export default function TodaySchedule(props) {
           onPress={() => onRefresh()}
           disabled={isError ? true : false}
         />
-        <View
+        <TouchableOpacity
+          onPress={() => onNavigate()}
           style={{
             backgroundColor: Colors?.lightgray,
             width: '100%',
@@ -98,7 +97,7 @@ export default function TodaySchedule(props) {
             clockInTime={data[0]?.clockInTime}
             clockOutTime={data[0]?.clockOutTime}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -226,8 +225,8 @@ export const Button = props => {
         borderRadius: 5,
         backgroundColor: type === 'clockin' ? Colors?.green : Colors?.red,
         padding: 8,
-        paddingLeft: 13,
-        paddingRight: 13,
+        paddingLeft: type === 'clockin' ? 13 : 10,
+        paddingRight: type === 'clockin' ? 13 : 10,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'flex-start',

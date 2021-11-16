@@ -6,6 +6,7 @@ import {
   RefreshControl,
   ActivityIndicator,
   Text,
+  Platform,
 } from 'react-native';
 import Colors from '../../utils/Colors';
 
@@ -181,18 +182,36 @@ export default function Home(props) {
     <View style={styles.container}>
       <Header />
       <ModalLoader visible={showModalLoader} />
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, zIndex: -99}}>
         <ScrollView
+          scrollEnabled={true}
           refreshControl={
             <RefreshControl
               onRefresh={() => setUniversalRefresh(true)}
               refreshing={universalRefresh}
             />
           }
-          contentContainerStyle={{
-            padding: 15,
-          }}>
+          contentContainerStyle={
+            Platform?.OS === 'android'
+              ? {
+                  padding: 15,
+                  paddingBottom: 100,
+                  paddingTop: 20,
+                }
+              : {
+                padding: 15,
+                }
+          }>
           <TodaySchedule
+            onNavigate={() => {
+              try {
+                props?.navigation?.navigate('Detail', {
+                  data: todaySchedules[0],
+                });
+              } catch (error) {
+                // error
+              }
+            }}
             isLoading={isLoadingTodaySchedule}
             isError={isErrorTodaySchedule}
             data={todaySchedules}
@@ -261,7 +280,7 @@ const styles = {
   container: {
     flex: 1,
     backgroundColor: Colors?.white,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
 };

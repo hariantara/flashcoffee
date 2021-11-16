@@ -17,7 +17,7 @@ export default function Avatar() {
         borderColor: Colors?.yellow,
       }}>
       <Image
-        resizeMode="contain"
+        resizeMode="cover"
         source={{uri: randomAvatarApi}}
         style={{
           position: 'absolute',

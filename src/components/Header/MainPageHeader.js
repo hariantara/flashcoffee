@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Platform} from 'react-native';
 import Header from './Header';
 import moment from 'moment';
 import Fonts from '../../utils/Fonts';
@@ -10,13 +10,22 @@ export default function MainPageHeader() {
   return (
     <Header>
       <View
-        style={{
-          marginTop: 15,
-          marginBottom: 25,
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+        style={
+          Platform?.OS === 'ios'
+            ? {
+                marginTop: 15,
+                marginBottom: 25,
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }
+            : {
+                marginBottom: 25,
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }
+        }>
         <Text
           style={{
             fontFamily: Fonts?.bold,
